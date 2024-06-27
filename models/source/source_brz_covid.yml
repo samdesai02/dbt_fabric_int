@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: covid_data
+    database: dw_dbt_fabric_covid
+    schema: dbo
+    tables:
+      - name: raw_covid_data
+        columns:
+          - name: id
+            tests:
+              - not_null
+              - unique

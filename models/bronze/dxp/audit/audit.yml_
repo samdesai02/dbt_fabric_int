@@ -5,7 +5,7 @@ models:
     description: "Audit log data capturing various web events."
     tests:
       - expect_table_row_count_to_equal_other_table_with_source_dedup:
-          compare_model: source("edp_gtm_dev_lh", "stg_dxp_audit")
+          compare_model: source("covid_data", "raw_covid_data")
           factor: 1
 
     meta:
@@ -17,6 +17,30 @@ models:
         meta:
           this_can_be_anything : "this can be anything"
 
+      - name: updated
+        data_type: varchar
+        description: "Unique identifier for each event."
+
+      - name: confirmed
+        data_type: varchar
+        description: "Unique identifier for each event."
+
+      - name: deaths
+        data_type: varchar
+        description: "Unique identifier for each event."
+
+      - name: recovered
+        data_type: varchar
+        description: "Unique identifier for each event."
+
+      - name: country_region
+        data_type: varchar
+        description: "Unique identifier for each event."
+
+      - name: covid_data_load_date
+        data_type: varchar
+        description: "Unique identifier for each event."
+      
       - name: event_timestamp
         data_type: datetime2
         description: "Timestamp of when the event occurred."

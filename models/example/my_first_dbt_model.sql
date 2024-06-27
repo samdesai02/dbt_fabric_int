@@ -11,9 +11,7 @@
 
 with source_data as (
 
-    select 1 as id
-    union all
-    select null as id
+    select * from [dw_dbt_fabric_covid].[dbo].[covid-19_unique_id_data]
 
 )
 

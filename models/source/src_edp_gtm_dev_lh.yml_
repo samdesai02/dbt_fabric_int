@@ -1,0 +1,3900 @@
+version: 2
+
+sources:
+  - name: covid_data
+    # Define the database name as we are reading the tables from the lakehouse
+    # stg table is ingested into the lakehouse due to the limitation on Azure Data Factory
+    # If the stg table is ingested into warehouse, a stg area (ADLS or ADLS Gen 2) is required
+    database: "{{env_var('dbt_covid_data','raw_covid_data')}}"
+    schema: dbo
+    description: "stg tables in Fabric lakehouse"
+    tables:
+      # - name: stg_dxp_adelaideuni
+      #   tags: ["dxp_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 25
+      #   columns:
+      #   - name: id
+      #     data_type: varchar
+      #     description: "Unique identifier for each event."
+      #     meta:
+      #       this_can_be_anything : "this can be anything"
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: event_timestamp
+      #     data_type: datetime2
+      #     description: "Timestamp of when the event occurred."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: export_time
+      #     data_type: bigint
+      #     description: "The time when data was exported, in Unix epoch format."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: session_id
+      #     data_type: varchar
+      #     description: "Session identifier for tracking user sessions."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: site_section_3
+      #     data_type: varchar
+      #     description: "Third level of the site section hierarchy."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: previous_page
+      #     data_type: varchar
+      #     description: "The URL of the previous page visited."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: interaction_event_name
+      #     data_type: varchar
+      #     description: "Name of the interaction event."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: new_or_repeat_visitor
+      #     data_type: varchar
+      #     description: "Indicator of whether the visitor is new or returning."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: site_section_2
+      #     data_type: varchar
+      #     description: "Second level of the site section hierarchy."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: page_name
+      #     data_type: varchar
+      #     description: "Name of the page where the event occurred."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: page_url
+      #     data_type: varchar
+      #     description: "URL of the page where the event occurred."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: site_section_4
+      #     data_type: varchar
+      #     description: "Fourth level of the site section hierarchy."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: interaction_text
+      #     data_type: varchar
+      #     description: "Text describing the interaction event."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: button_type
+      #     data_type: varchar
+      #     description: "Type of button clicked during the interaction."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: link_position
+      #     data_type: varchar
+      #     description: "Position of the link that was clicked."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: component_id
+      #     data_type: varchar
+      #     description: "Identifier for the UI component involved in the interaction."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: study_area
+      #     data_type: varchar
+      #     description: "Area of study selected by the user."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: product_name
+      #     data_type: varchar
+      #     description: "Name of the product related to the event."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: faculty
+      #     data_type: varchar
+      #     description: "Faculty associated with the event."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: study_level
+      #     data_type: varchar
+      #     description: "Level of study selected by the user."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: product_code
+      #     data_type: varchar
+      #     description: "Code of the product related to the event."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: pageViews
+      #     data_type: float
+      #     description: "Number of page views."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: linkClicks
+      #     data_type: float
+      #     description: "Number of link clicks."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: productPageViews
+      #     data_type: float
+      #     description: "Number of product page views."
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: audit_ingestion_time
+      #     data_type: datetime2
+      #     description: "Time of data ingestion for auditing purposes."
+      #     tests:
+      #       - expect_column_to_exist
+
+      - name: raw_covid_data
+        columns:
+        - name: id
+          data_type: varchar
+          description: "Unique identifier for each event."
+          meta:
+            this_can_be_anything : "this can be anything"
+
+        - name: updated
+          data_type: varchar
+          description: "Unique identifier for each event."
+
+        - name: confirmed
+          data_type: varchar
+          description: "Unique identifier for each event."
+
+        - name: deaths
+          data_type: varchar
+          description: "Unique identifier for each event."
+
+        - name: recovered
+          data_type: varchar
+          description: "Unique identifier for each event."
+
+        - name: country_region
+          data_type: varchar
+          description: "Unique identifier for each event."
+
+        - name: covid_data_load_date
+          data_type: varchar
+          description: "Unique identifier for each event."
+
+      # - name: stg_dxp_device
+      # - name: stg_dxp_endUserIDs
+      # - name: stg_dxp_environment
+      # - name: stg_dxp_experience_propositionAction
+      # - name: stg_dxp_experience_propositionEventType
+      # - name: stg_dxp_experience_proposition_decision
+      # - name: stg_dxp_experience_proposition_items
+      # - name: stg_dxp_experience_proposition_scope
+      # - name: stg_dxp_identityMap
+      # - name: stg_dxp_implementationDetails
+      # - name: stg_dxp_placeContext
+      #   tags: ["dxp_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 9
+
+        # columns:
+      #   - name: id
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: event_timestamp
+      #     data_type: datetime2
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: export_time
+      #     data_type: bigint
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: local_timezone_offset
+      #     data_type: int
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: local_time
+      #     data_type: datetime2
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: state_province
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: city
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: country_code
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: audit_ingestion_time
+      #     data_type: datetime2
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      # - name: stg_dxp_siteSearch
+      # - name: stg_dxp_channel
+      #   tags: ["dxp_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 6
+
+      #   columns:
+      #   - name: id
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+
+      #   - name: event_timestamp
+      #     data_type: datetime2
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+
+      #   - name: export_time
+      #     data_type: bigint
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: type_at_source
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+
+      #   - name: channel_id
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: audit_ingestion_time
+      #     data_type: datetime2
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+
+      # - name: stg_dxp_marketing
+      #   tags: ["dxp_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 6
+
+      #   columns:
+      #   - name: id
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: event_timestamp
+      #     data_type: datetime2
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: export_time
+      #     data_type: bigint
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: tracking_code
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: campaign_name
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: audit_ingestion_time
+      #     data_type: datetime2
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      # - name: stg_dxp_web
+      #   tags: ["dxp_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 15
+
+      #   columns:
+      #   - name: id
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: event_timestamp
+      #     data_type: datetime2
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: export_time
+      #     data_type: bigint
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: web_interaction_name
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: link_clicks
+      #     data_type: float
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: web_interaction_url
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: event_type
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: web_page_details_name
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: web_page_details_url
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+        
+      #   - name: is_error_page
+      #     data_type: boolean
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: site_section
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: is_home_page
+      #     data_type: boolean
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: page_views
+      #     data_type: float
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: web_referrer_url
+      #     data_type: varchar
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+
+      #   - name: audit_ingestion_time
+      #     data_type: datetime2
+      #     description: ""
+      #     tests:
+      #       - expect_column_to_exist
+      # - name: stg_crm_incident
+      #   tags: ["crm_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 168
+      #   columns:
+      #     - name: agree_to_terms_and_conditions
+      #       data_type: varchar
+      #       description: "Indicates whether the user agreed to terms and conditions."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: application
+      #       data_type: int
+      #       description: "Application identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: asset_id
+      #       data_type: int
+      #       description: "Asset identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: assigned_account
+      #       data_type: varchar
+      #       description: "Assigned account for the incident."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: assigned_account_id
+      #       data_type: int
+      #       description: "Identifier of the assigned account."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: awaiting_callback
+      #       data_type: varchar
+      #       description: "Indicates if the incident is awaiting a callback."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: banner_account
+      #       data_type: varchar
+      #       description: "Banner account information."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: banner_flag
+      #       data_type: varchar
+      #       description: "Flag indicating banner status."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: banner_text
+      #       data_type: varchar
+      #       description: "Text for the banner."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: info_required_brochure
+      #       data_type: varchar
+      #       description: "Information required for brochure."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: business_unit
+      #       data_type: varchar
+      #       description: "Business unit associated with the incident."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: call_outcome
+      #       data_type: varchar
+      #       description: "Outcome of the call."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: call_last_call_date
+      #       data_type: datetime
+      #       description: "Date of the last call."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: call_next_scheduled
+      #       data_type: datetime
+      #       description: "Next scheduled call date."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: category_id
+      #       data_type: varchar
+      #       description: "Identifier for the category."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: info_required_english
+      #       data_type: varchar
+      #       description: "Information required for English proficiency."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: channel_id
+      #       data_type: varchar
+      #       description: "Identifier for the communication channel."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: chat_queue
+      #       data_type: varchar
+      #       description: "Chat queue information."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: level_of_study
+      #       data_type: varchar
+      #       description: "Level of study associated with the incident."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: call_outcome_comments
+      #       data_type: varchar
+      #       description: "Comments on the call outcome."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: community_post_hash
+      #       data_type: varchar
+      #       description: "Hash of the community post."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: competitor_intel
+      #       data_type: varchar
+      #       description: "Competitor intelligence information."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: completed_the_stat
+      #       data_type: varchar
+      #       description: "Indicates if the stat was completed."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: completed_this_qualification
+      #       data_type: varchar
+      #       description: "Indicates if this qualification was completed."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: conditional_offer
+      #       data_type: varchar
+      #       description: "Details of the conditional offer."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_id
+      #       data_type: int
+      #       description: "Contact identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_smartsense
+      #       data_type: int
+      #       description: "SmartSense contact identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: countryofstudy
+      #       data_type: varchar
+      #       description: "Country of study."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: created_by_account_id
+      #       data_type: int
+      #       description: "Account ID of the creator."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: created_by_account
+      #       data_type: varchar
+      #       description: "Account name of the creator."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: credit_offer
+      #       data_type: varchar
+      #       description: "Credit offer details."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: credit_request
+      #       data_type: varchar
+      #       description: "Credit request details."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: date_banner_flag_last_updated
+      #       data_type: datetime
+      #       description: "Date when the banner flag was last updated."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: date_closed
+      #       data_type: datetime
+      #       description: "Date when the incident was closed."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: date_created
+      #       data_type: datetime
+      #       description: "Date when the incident was created."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: date_initial_solution_response
+      #       data_type: datetime
+      #       description: "Date of the initial solution response."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: date_last_responded
+      #       data_type: datetime
+      #       description: "Date when the incident was last responded to."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: date_last_updated
+      #       data_type: datetime
+      #       description: "Date when the incident was last updated."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: disposition_id
+      #       data_type: varchar
+      #       description: "Disposition identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: division_comments
+      #       data_type: varchar
+      #       description: "Comments from the division."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: dormant
+      #       data_type: varchar
+      #       description: "Indicates if the incident is dormant."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: enquiry_highest_study_level
+      #       data_type: varchar
+      #       description: "Highest level of study in the enquiry."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: enquiry_phone_number
+      #       data_type: varchar
+      #       description: "Phone number provided in the enquiry."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: enquiry_source
+      #       data_type: varchar
+      #       description: "Source of the enquiry."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: enquiry_start_date
+      #       data_type: datetime
+      #       description: "Start date of the enquiry."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: enquiry_submission_date
+      #       data_type: datetime
+      #       description: "Submission date of the enquiry."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: enquiry_subscriber_site_name
+      #       data_type: varchar
+      #       description: "Subscriber site name for the enquiry."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: escalation_date
+      #       data_type: datetime
+      #       description: "Date of incident escalation."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: escalation_level
+      #       data_type: varchar
+      #       description: "Level of incident escalation."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: event_id
+      #       data_type: int
+      #       description: "Event identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: expected_intake
+      #       data_type: varchar
+      #       description: "Expected intake details."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: flow_id
+      #       data_type: int
+      #       description: "Flow identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: form_submitted
+      #       data_type: varchar
+      #       description: "Indicates if the form was submitted."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: group
+      #       data_type: varchar
+      #       description: "Group associated with the incident."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: incident_email
+      #       data_type: varchar
+      #       description: "Email related to the incident."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: incident_id
+      #       data_type: int
+      #       description: "Incident identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: incident_type
+      #       data_type: varchar
+      #       description: "Type of incident."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: initial_response_due
+      #       data_type: datetime
+      #       description: "Due date for the initial response."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: info_required_online
+      #       data_type: varchar
+      #       description: "Information required for online submission."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: interface
+      #       data_type: varchar
+      #       description: "Interface used for the incident."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: language
+      #       data_type: varchar
+      #       description: "Language preference for the incident."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: last_year_studied
+      #       data_type: varchar
+      #       description: "Last year of study."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: likely_to_change_first_pref
+      #       data_type: varchar
+      #       description: "Indicates if the first preference is likely to change."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: mailbox
+      #       data_type: varchar
+      #       description: "Mailbox associated with the incident."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: mailing
+      #       data_type: varchar
+      #       description: "Mailing information."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: max_academic_level
+      #       data_type: varchar
+      #       description: "Maximum academic level attained."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: mcm_document_link
+      #       data_type: varchar
+      #       description: "Link to MCM document."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: mcm_nsl_group
+      #       data_type: varchar
+      #       description: "MCM NSL group information."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: mcm_token
+      #       data_type: int
+      #       description: "MCM token identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: motivation
+      #       data_type: varchar
+      #       description: "Motivation details."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: organisation_id
+      #       data_type: int
+      #       description: "Organisation identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: motivation_other
+      #       data_type: varchar
+      #       description: "Other motivation details."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: info_required_pathway
+      #       data_type: varchar
+      #       description: "Information required for pathway."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: percentage_complete
+      #       data_type: int
+      #       description: "Percentage of completion."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: pg_specialisation_1
+      #       data_type: varchar
+      #       description: "Primary PG specialisation."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: pg_specialisation_2
+      #       data_type: varchar
+      #       description: "Secondary PG specialisation."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: pg_specialisation_last_updated
+      #       data_type: datetime
+      #       description: "Last update date for PG specialisation."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: preferred_contact_method
+      #       data_type: varchar
+      #       description: "Preferred contact method."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: product_id
+      #       data_type: varchar
+      #       description: "Product identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: program
+      #       data_type: int
+      #       description: "Program identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: program_pref_1
+      #       data_type: varchar
+      #       description: "First program preference."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: program_pref_2
+      #       data_type: varchar
+      #       description: "Second program preference."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: program_pref_last_updated
+      #       data_type: datetime
+      #       description: "Last update date for program preference."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: qualificationlevel
+      #       data_type: varchar
+      #       description: "Qualification level."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: queue
+      #       data_type: varchar
+      #       description: "Queue information."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: reference_#
+      #       data_type: varchar
+      #       description: "Reference number."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: requested_start_date
+      #       data_type: varchar
+      #       description: "Requested start date."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: required_work_experience
+      #       data_type: varchar
+      #       description: "Required work experience."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: resolution_interval
+      #       data_type: int
+      #       description: "Interval for resolution."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: missing_application_object
+      #       data_type: varchar
+      #       description: "Indicates if the application object is missing."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: response_channel_id
+      #       data_type: varchar
+      #       description: "Identifier for the response channel."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: response_interval
+      #       data_type: int
+      #       description: "Interval for response."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: response_requirements_id
+      #       data_type: int
+      #       description: "Identifier for response requirements."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: rule_state
+      #       data_type: varchar
+      #       description: "State of the rule."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: send_acer_username_flag
+      #       data_type: varchar
+      #       description: "Flag to send ACER username."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: send_sms_message
+      #       data_type: varchar
+      #       description: "Indicates if an SMS message was sent."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: session_id
+      #       data_type: varchar
+      #       description: "Session identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: severity
+      #       data_type: varchar
+      #       description: "Severity of the incident."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: shared
+      #       data_type: varchar
+      #       description: "Indicates if the incident is shared."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: sla_instance_id
+      #       data_type: varchar
+      #       description: "SLA instance identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: sme_notes_update
+      #       data_type: varchar
+      #       description: "Updates on SME notes."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: sme_permission
+      #       data_type: varchar
+      #       description: "SME permission details."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: sme_response_update
+      #       data_type: varchar
+      #       description: "Updates on SME response."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: sme_view_notes
+      #       data_type: varchar
+      #       description: "SME view notes."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: smime_type
+      #       data_type: varchar
+      #       description: "SMIME type."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: sms_message
+      #       data_type: varchar
+      #       description: "SMS message content."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: source_level_1
+      #       data_type: varchar
+      #       description: "Source level 1 details."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: source_level_2
+      #       data_type: varchar
+      #       description: "Source level 2 details."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: staff_smartsense
+      #       data_type: int
+      #       description: "Staff SmartSense identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: start_month_pref
+      #       data_type: varchar
+      #       description: "Preferred start month."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: start_year_pref
+      #       data_type: varchar
+      #       description: "Preferred start year."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: info_required_stat_workshop
+      #       data_type: varchar
+      #       description: "Information required for stat workshop."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: status
+      #       data_type: varchar
+      #       description: "Status of the incident."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: status_type
+      #       data_type: varchar
+      #       description: "Type of status."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: info_required_study_abroad
+      #       data_type: varchar
+      #       description: "Information required for studying abroad."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: study_area_1
+      #       data_type: varchar
+      #       description: "Primary study area."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: study_area_2
+      #       data_type: varchar
+      #       description: "Secondary study area."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: study_area_last_updated
+      #       data_type: datetime
+      #       description: "Last update date for study area."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: study_intensity
+      #       data_type: varchar
+      #       description: "Intensity of study."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: study_mode_preference
+      #       data_type: varchar
+      #       description: "Preferred study mode."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: subject
+      #       data_type: varchar
+      #       description: "Subject of the incident."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: submitted_date
+      #       data_type: datetime
+      #       description: "Date the incident was submitted."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: successful_contact_date
+      #       data_type: datetime
+      #       description: "Date of successful contact."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: support_area
+      #       data_type: varchar
+      #       description: "Support area involved."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: survey_score
+      #       data_type: int
+      #       description: "Score from survey feedback."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: 3+_years_work_experience
+      #       data_type: varchar
+      #       description: "Indicates if there is 3+ years of work experience."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: uncommitted_response
+      #       data_type: varchar
+      #       description: "Details of uncommitted response."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: weight
+      #       data_type: int
+      #       description: "Weight assigned to the incident."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: agree_to_cst_conditions
+      #       data_type: varchar
+      #       description: "Indicates agreement to CST conditions."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: atsi_flag
+      #       data_type: varchar
+      #       description: "ATSI flag indicator."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: confidential
+      #       data_type: varchar
+      #       description: "Indicates if the incident is confidential."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: enquiry_sla_timestamp
+      #       data_type: datetime
+      #       description: "Timestamp for enquiry SLA."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: sent_to_academic_services
+      #       data_type: datetime
+      #       description: "Timestamp when sent to academic services."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: study_preference_flag
+      #       data_type: varchar
+      #       description: "Flag for study preference."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: study_preferences_updated
+      #       data_type: datetime
+      #       description: "Timestamp for when study preferences were updated."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: utm_campaign
+      #       data_type: varchar
+      #       description: "UTM campaign identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: utm_content
+      #       data_type: varchar
+      #       description: "UTM content identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: utm_medium
+      #       data_type: varchar
+      #       description: "UTM medium identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: utm_source
+      #       data_type: varchar
+      #       description: "UTM source identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: utm_term
+      #       data_type: varchar
+      #       description: "UTM term identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: enquiry_subscriber_site_id
+      #       data_type: varchar
+      #       description: "Subscriber site identifier for the enquiry."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: eloqua_identifier
+      #       data_type: varchar
+      #       description: "Eloqua identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: eloqua_campaign
+      #       data_type: varchar
+      #       description: "Eloqua campaign identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: confidential_restricted
+      #       data_type: varchar
+      #       description: "Indicates if the incident is confidential and restricted."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: previous_research_applicant
+      #       data_type: varchar
+      #       description: "Indicates if the applicant has previous research experience."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: prior_study_area
+      #       data_type: varchar
+      #       description: "Prior study area details."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: enquiry_form_type
+      #       data_type: varchar
+      #       description: "Type of enquiry form used."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: home_campus
+      #       data_type: varchar
+      #       description: "Home campus information."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: master_enquiry
+      #       data_type: int
+      #       description: "Master enquiry identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: primary_org1
+      #       data_type: varchar
+      #       description: "Primary organisation detail 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: primary_org2
+      #       data_type: varchar
+      #       description: "Primary organisation detail 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: primary_org3
+      #       data_type: varchar
+      #       description: "Primary organisation detail 3."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: client_type
+      #       data_type: varchar
+      #       description: "Type of client."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: heard_about_us
+      #       data_type: varchar
+      #       description: "How the client heard about us."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: program_offered
+      #       data_type: varchar
+      #       description: "Program offered details."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: academic_review
+      #       data_type: varchar
+      #       description: "Details of academic review."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: academic_term
+      #       data_type: varchar
+      #       description: "Academic term information."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: opt_in
+      #       data_type: varchar
+      #       description: "Indicates if the client opted in."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: prior_study_by_research
+      #       data_type: varchar
+      #       description: "Details of prior study by research."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: appointment_wrap_up
+      #       data_type: varchar
+      #       description: "Details of appointment wrap-up."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: updated_by
+      #       data_type: varchar
+      #       description: "Updated by account."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: tap_marketing_preferences
+      #       data_type: varchar
+      #       description: "TAP marketing preferences."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: tap_chat_count
+      #       data_type: int
+      #       description: "Count of TAP chats."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: original_queue
+      #       data_type: varchar
+      #       description: "Original queue details."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: follow_up_2
+      #       data_type: datetime
+      #       description: "Follow-up date 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: follow_up_1
+      #       data_type: datetime
+      #       description: "Follow-up date 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: data_source
+      #       data_type: varchar
+      #       description: "Source of the data."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: audit_ingestion_time
+      #       data_type: datetime
+      #       description: "Timestamp for audit ingestion."
+      #       tests:
+      #         - expect_column_to_exist
+      # - name: stg_crm_contact
+      #   tags: ["crm_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 153
+      #   columns:
+      #     - name: atsi
+      #       data_type: string
+      #       description: "ATS Integration"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: acer_flag
+      #       data_type: string
+      #       description: "ACER Flag"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: acer_username
+      #       data_type: string
+      #       description: "ACER Username"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: acer_users_allocated
+      #       data_type: integer
+      #       description: "ACER Users Allocated"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: acquired
+      #       data_type: datetime2
+      #       description: "Timestamp of Acquisition"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: address_type
+      #       data_type: string
+      #       description: "Type of Address"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: alumni_id
+      #       data_type: string
+      #       description: "Alumni ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: applicant_type
+      #       data_type: string
+      #       description: "Type of Applicant"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: application_region
+      #       data_type: string
+      #       description: "Region of Application"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_applicant
+      #       data_type: string
+      #       description: "Applicant Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_personal_repres
+      #       data_type: string
+      #       description: "Personal Representative Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: assistant_phone
+      #       data_type: string
+      #       description: "Assistant Phone"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: campus
+      #       data_type: string
+      #       description: "Campus"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: category_id
+      #       data_type: string
+      #       description: "Category ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: citizenship
+      #       data_type: string
+      #       description: "Citizenship"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: city
+      #       data_type: string
+      #       description: "City"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: college
+      #       data_type: string
+      #       description: "College"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_id
+      #       data_type: integer
+      #       description: "Contact ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type
+      #       data_type: string
+      #       description: "Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: country
+      #       data_type: string
+      #       description: "Country"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: country_of_birth
+      #       data_type: string
+      #       description: "Country of Birth"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: country_of_citizenship
+      #       data_type: string
+      #       description: "Country of Citizenship"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: country_of_residence
+      #       data_type: string
+      #       description: "Country of Residence"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: date_created
+      #       data_type: datetime2
+      #       description: "Date Created"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: date_last_updated
+      #       data_type: datetime2
+      #       description: "Date Last Updated"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: disabled_flag
+      #       data_type: string
+      #       description: "Disabled Flag"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: do_not_contact
+      #       data_type: string
+      #       description: "Do Not Contact"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: date_of_birth
+      #       data_type: datetime2
+      #       description: "Date of Birth"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: deceased
+      #       data_type: datetime2
+      #       description: "Deceased"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: domain
+      #       data_type: string
+      #       description: "Domain"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: dupcontact
+      #       data_type: string
+      #       description: "Duplicate Contact"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: email_address
+      #       data_type: string
+      #       description: "Email Address"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: email_alt_1
+      #       data_type: string
+      #       description: "Alternate Email 1"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: email_alt_1_invalid_flag
+      #       data_type: string
+      #       description: "Invalid Flag for Alternate Email 1"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: email_alt_2
+      #       data_type: string
+      #       description: "Alternate Email 2"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: email_alt_2_invalid_flag
+      #       data_type: string
+      #       description: "Invalid Flag for Alternate Email 2"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: email_format_preference
+      #       data_type: string
+      #       description: "Email Format Preference"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: external_reference
+      #       data_type: string
+      #       description: "External Reference"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: fax_phone
+      #       data_type: string
+      #       description: "Fax Phone"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: first_name
+      #       data_type: string
+      #       description: "First Name"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: flagged_for_events
+      #       data_type: string
+      #       description: "Flagged for Events"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: full_name
+      #       data_type: string
+      #       description: "Full Name"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: gender
+      #       data_type: string
+      #       description: "Gender"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: generic_merge_field_1
+      #       data_type: string
+      #       description: "Generic Merge Field 1"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: generic_merge_field_2
+      #       data_type: string
+      #       description: "Generic Merge Field 2"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: global_opt_in
+      #       data_type: string
+      #       description: "Global Opt-In"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: high_school_graduation_year
+      #       data_type: string
+      #       description: "High School Graduation Year"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: home_phone
+      #       data_type: string
+      #       description: "Home Phone"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: student_staff_id
+      #       data_type: string
+      #       description: "Student Staff ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: invalid_email_flag
+      #       data_type: string
+      #       description: "Invalid Email Flag"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: last_name
+      #       data_type: string
+      #       description: "Last Name"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: legal_first_name
+      #       data_type: string
+      #       description: "Legal First Name"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: legal_last_name
+      #       data_type: string
+      #       description: "Legal Last Name"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: legal_middle_name
+      #       data_type: string
+      #       description: "Legal Middle Name"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: login
+      #       data_type: string
+      #       description: "Login"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: mailing_type
+      #       data_type: string
+      #       description: "Mailing Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: master_contact_id
+      #       data_type: string
+      #       description: "Master Contact ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: student_id_temporary
+      #       data_type: string
+      #       description: "Temporary Student ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: merged_contact
+      #       data_type: string
+      #       description: "Merged Contact"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: middle_name
+      #       data_type: string
+      #       description: "Middle Name"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: mobile_phone
+      #       data_type: string
+      #       description: "Mobile Phone"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: office_phone
+      #       data_type: string
+      #       description: "Office Phone"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: online_application_email
+      #       data_type: string
+      #       description: "Online Application Email"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: opportunity_state
+      #       data_type: string
+      #       description: "Opportunity State"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: organisation_id
+      #       data_type: integer
+      #       description: "Organisation ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: organisation_name_oracle_rightnow_outreach_cloud_service
+      #       data_type: string
+      #       description: "Organisation Name (Oracle RightNow Outreach Cloud Service)"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: outreach_state
+      #       data_type: string
+      #       description: "Outreach State"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: password_email_expiration
+      #       data_type: datetime2
+      #       description: "Password Email Expiration"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: persona
+      #       data_type: string
+      #       description: "Persona"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_supporter
+      #       data_type: string
+      #       description: "Supporter Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: position_title
+      #       data_type: string
+      #       description: "Position Title"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: post_code
+      #       data_type: string
+      #       description: "Post Code"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: potential_duplicate
+      #       data_type: string
+      #       description: "Potential Duplicate"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: preferred_name
+      #       data_type: string
+      #       description: "Preferred Name"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: prefix
+      #       data_type: string
+      #       description: "Prefix"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: previous_last_name
+      #       data_type: string
+      #       description: "Previous Last Name"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: high_school_main_contact
+      #       data_type: string
+      #       description: "Main Contact for High School"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_student_previous
+      #       data_type: string
+      #       description: "Previous Student Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: product_id
+      #       data_type: string
+      #       description: "Product ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: program_code
+      #       data_type: string
+      #       description: "Program Code"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: program_effective_date
+      #       data_type: datetime2
+      #       description: "Effective Date of Program"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: program_plan
+      #       data_type: string
+      #       description: "Program Plan"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: pronouns
+      #       data_type: string
+      #       description: "Pronouns"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: prospect_stage
+      #       data_type: string
+      #       description: "Prospect Stage"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_prospect
+      #       data_type: string
+      #       description: "Prospect Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: rule_state
+      #       data_type: string
+      #       description: "Rule State"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: sales_net_customer_id
+      #       data_type: string
+      #       description: "Sales Net Customer ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: salesperson
+      #       data_type: string
+      #       description: "Salesperson"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: school
+      #       data_type: string
+      #       description: "School"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: send_sms_message
+      #       data_type: string
+      #       description: "Send SMS Message"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: service_state
+      #       data_type: string
+      #       description: "Service State"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: source_level_1
+      #       data_type: string
+      #       description: "Source Level 1"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: source_level_2
+      #       data_type: string
+      #       description: "Source Level 2"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: sms_message
+      #       data_type: string
+      #       description: "SMS Message"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_staff
+      #       data_type: string
+      #       description: "Staff Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: state
+      #       data_type: string
+      #       description: "State"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: street
+      #       data_type: string
+      #       description: "Street"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_student
+      #       data_type: string
+      #       description: "Student Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: studylink_applicant_id
+      #       data_type: string
+      #       description: "Studylink Applicant ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: survey_opt_in
+      #       data_type: string
+      #       description: "Survey Opt-In"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_high_schl_staff
+      #       data_type: string
+      #       description: "High School Staff Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: title
+      #       data_type: string
+      #       description: "Title"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: token
+      #       data_type: string
+      #       description: "Token"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: town_county
+      #       data_type: string
+      #       description: "Town/County"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: under_15_parental_permission
+      #       data_type: string
+      #       description: "Under 15 Parental Permission"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: unformatted_assistant_phone
+      #       data_type: string
+      #       description: "Unformatted Assistant Phone"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: unformatted_home_phone
+      #       data_type: string
+      #       description: "Unformatted Home Phone"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: unformatted_mobile_phone
+      #       data_type: string
+      #       description: "Unformatted Mobile Phone"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: unformatted_office_phone
+      #       data_type: string
+      #       description: "Unformatted Office Phone"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: unisa_osc_c_id
+      #       data_type: string
+      #       description: "UNISA OSC C ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: user_id
+      #       data_type: integer
+      #       description: "User ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: weight
+      #       data_type: integer
+      #       description: "Weight"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: heat_status_uo
+      #       data_type: string
+      #       description: "Heat Status (UO)"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: heat_status_international
+      #       data_type: string
+      #       description: "Heat Status (International)"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: heat_status_domestic
+      #       data_type: string
+      #       description: "Heat Status (Domestic)"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: backup_style
+      #       data_type: string
+      #       description: "Backup Style"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: cdm_party_id
+      #       data_type: string
+      #       description: "CDM Party ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: cdm_trigger_token
+      #       data_type: string
+      #       description: "CDM Trigger Token"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: dominant_style
+      #       data_type: string
+      #       description: "Dominant Style"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: satac_application_flag
+      #       data_type: string
+      #       description: "SATAC Application Flag"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: unsubscribe_country
+      #       data_type: string
+      #       description: "Unsubscribe Country"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: unsubscribe_flag
+      #       data_type: string
+      #       description: "Unsubscribe Flag"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: unsubscribe_ip_address
+      #       data_type: string
+      #       description: "Unsubscribe IP Address"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: unsubscribe_reference
+      #       data_type: string
+      #       description: "Unsubscribe Reference"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: unsubscribe_timestamp
+      #       data_type: datetime2
+      #       description: "Unsubscribe Timestamp"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: uoa_osc_c_id
+      #       data_type: string
+      #       description: "UOA OSC C ID"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: combined_first_name
+      #       data_type: string
+      #       description: "Combined First Name"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: primary_org1
+      #       data_type: string
+      #       description: "Primary Org 1"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: primary_org2
+      #       data_type: string
+      #       description: "Primary Org 2"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: primary_org3
+      #       data_type: string
+      #       description: "Primary Org 3"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_student_ugrd
+      #       data_type: string
+      #       description: "Undergraduate Student Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_student_pgrd
+      #       data_type: string
+      #       description: "Postgraduate Student Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_student_rsch
+      #       data_type: string
+      #       description: "Research Student Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_student_uo
+      #       data_type: string
+      #       description: "University Outreach Student Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_student_oua
+      #       data_type: string
+      #       description: "Open University Australia Student Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_lib_ill_supply
+      #       data_type: string
+      #       description: "Library Interlibrary Loan Supply Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_lib_reciprocal
+      #       data_type: string
+      #       description: "Library Reciprocal Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_lib_community
+      #       data_type: string
+      #       description: "Library Community Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: motivation
+      #       data_type: string
+      #       description: "Motivation"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_vip
+      #       data_type: string
+      #       description: "VIP Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: years_work_exp
+      #       data_type: string
+      #       description: "Years of Work Experience"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: years_mgmt_exp
+      #       data_type: string
+      #       description: "Years of Management Experience"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: workplace
+      #       data_type: string
+      #       description: "Workplace"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: industry
+      #       data_type: string
+      #       description: "Industry"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: academic_review_record
+      #       data_type: string
+      #       description: "Academic Review Record"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: advisor_domestic
+      #       data_type: string
+      #       description: "Domestic Advisor"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: advisor_international
+      #       data_type: string
+      #       description: "International Advisor"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_agent
+      #       data_type: string
+      #       description: "Agent Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_alumni
+      #       data_type: string
+      #       description: "Alumni Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_staff_current
+      #       data_type: string
+      #       description: "Current Staff Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contact_type_student_offshore
+      #       data_type: string
+      #       description: "Offshore Student Contact Type"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: what_best_describes_me
+      #       data_type: string
+      #       description: "Description of Me"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: audit_ingestion_time
+      #       data_type: datetime2
+      #       description: "Audit Ingestion Time"
+      #       tests:
+      #         - expect_column_to_exist
+      # - name: stg_crm_interaction
+      #   tags: ["crm_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 117
+      #   columns:
+      #     - name: contact_id
+      #       data_type: integer
+      #       description: "ID of the contact associated with the interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: conv_outcome
+      #       data_type: string
+      #       description: "Conversation outcome."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: level_of_study
+      #       data_type: string
+      #       description: "Level of study of the contact."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: created_by_account
+      #       data_type: string
+      #       description: "Account of the user who created the interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: created_by_id
+      #       data_type: integer
+      #       description: "ID of the user who created the interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: date_created
+      #       data_type: datetime2
+      #       description: "Timestamp of when the interaction was created."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: date_last_updated
+      #       data_type: datetime2
+      #       description: "Timestamp of when the interaction was last updated."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: incident_id
+      #       data_type: integer
+      #       description: "ID of the incident associated with the interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: interaction_id
+      #       data_type: integer
+      #       description: "ID of the interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: event_id
+      #       data_type: integer
+      #       description: "ID of the event associated with the interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: interaction_status
+      #       data_type: string
+      #       description: "Status of the interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: interaction_type
+      #       data_type: string
+      #       description: "Type of interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: lead_callback_date
+      #       data_type: datetime2
+      #       description: "Date of the lead callback."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: lead_call_outcome
+      #       data_type: string
+      #       description: "Outcome of the lead call."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: lead_contact_status
+      #       data_type: string
+      #       description: "Status of the lead contact."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: location
+      #       data_type: string
+      #       description: "Location of the interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: message
+      #       data_type: string
+      #       description: "Message of the interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: product
+      #       data_type: string
+      #       description: "Product associated with the interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: summary
+      #       data_type: string
+      #       description: "Summary of the interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: updated_by_account
+      #       data_type: string
+      #       description: "Account of the user who last updated the interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: updated_by_id
+      #       data_type: integer
+      #       description: "ID of the user who last updated the interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: attended_datetime
+      #       data_type: datetime2
+      #       description: "Date and time of the attended interaction."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: attended_flag
+      #       data_type: string
+      #       description: "Flag indicating if the interaction was attended."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: confidential_flag
+      #       data_type: string
+      #       description: "Flag indicating if the interaction is confidential."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_1_label
+      #       data_type: string
+      #       description: "Label for custom field 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_2_label
+      #       data_type: string
+      #       description: "Label for custom field 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_3_label
+      #       data_type: string
+      #       description: "Label for custom field 3."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_4_label
+      #       data_type: string
+      #       description: "Label for custom field 4."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_5_label
+      #       data_type: string
+      #       description: "Label for custom field 5."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_6_label
+      #       data_type: string
+      #       description: "Label for custom field 6."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_7_label
+      #       data_type: string
+      #       description: "Label for custom field 7."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_8_label
+      #       data_type: string
+      #       description: "Label for custom field 8."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_9_label
+      #       data_type: string
+      #       description: "Label for custom field 9."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_10_label
+      #       data_type: string
+      #       description: "Label for custom field 10."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_11_label
+      #       data_type: string
+      #       description: "Label for custom field 11."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_1_value
+      #       data_type: string
+      #       description: "Value for custom field 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_2_value
+      #       data_type: string
+      #       description: "Value for custom field 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_3_value
+      #       data_type: string
+      #       description: "Value for custom field 3."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_4_value
+      #       data_type: string
+      #       description: "Value for custom field 4."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_5_value
+      #       data_type: string
+      #       description: "Value for custom field 5."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_6_value
+      #       data_type: string
+      #       description: "Value for custom field 6."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_7_value
+      #       data_type: string
+      #       description: "Value for custom field 7."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_8_value
+      #       data_type: string
+      #       description: "Value for custom field 8."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_9_value
+      #       data_type: string
+      #       description: "Value for custom field 9."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_10_value
+      #       data_type: string
+      #       description: "Value for custom field 10."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_11_value
+      #       data_type: string
+      #       description: "Value for custom field 11."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_contact_1_value
+      #       data_type: string
+      #       description: "Value for custom contact 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_contact_2_value
+      #       data_type: string
+      #       description: "Value for custom contact 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_contact_3_value
+      #       data_type: string
+      #       description: "Value for custom contact 3."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_contact_4_value
+      #       data_type: string
+      #       description: "Value for custom contact 4."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_contact_5_value
+      #       data_type: string
+      #       description: "Value for custom contact 5."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_contact_1_label
+      #       data_type: string
+      #       description: "Label for custom contact 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_contact_2_label
+      #       data_type: string
+      #       description: "Label for custom contact 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_contact_3_label
+      #       data_type: string
+      #       description: "Label for custom contact 3."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_contact_4_label
+      #       data_type: string
+      #       description: "Label for custom contact 4."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_contact_5_label
+      #       data_type: string
+      #       description: "Label for custom contact 5."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_date_1_label
+      #       data_type: string
+      #       description: "Label for custom date 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_date_2_label
+      #       data_type: string
+      #       description: "Label for custom date 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_date_3_label
+      #       data_type: string
+      #       description: "Label for custom date 3."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_date_1_value
+      #       data_type: datetime2
+      #       description: "Value for custom date 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_date_2_value
+      #       data_type: datetime2
+      #       description: "Value for custom date 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_date_3_value
+      #       data_type: datetime2
+      #       description: "Value for custom date 3."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_1_label
+      #       data_type: string
+      #       description: "Label for custom flag 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_2_label
+      #       data_type: string
+      #       description: "Label for custom flag 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_3_label
+      #       data_type: string
+      #       description: "Label for custom flag 3."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_4_label
+      #       data_type: string
+      #       description: "Label for custom flag 4."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_5_label
+      #       data_type: string
+      #       description: "Label for custom flag 5."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_6_label
+      #       data_type: string
+      #       description: "Label for custom flag 6."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_1_value
+      #       data_type: string
+      #       description: "Value for custom flag 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_2_value
+      #       data_type: string
+      #       description: "Value for custom flag 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_3_value
+      #       data_type: string
+      #       description: "Value for custom flag 3."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_4_value
+      #       data_type: string
+      #       description: "Value for custom flag 4."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_5_value
+      #       data_type: string
+      #       description: "Value for custom flag 5."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_6_value
+      #       data_type: string
+      #       description: "Value for custom flag 6."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_number_1_label
+      #       data_type: string
+      #       description: "Label for custom number 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_number_1_value
+      #       data_type: integer
+      #       description: "Value for custom number 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: unknown_student_id
+      #       data_type: string
+      #       description: "ID of the unknown student."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: eloqua_campaign
+      #       data_type: string
+      #       description: "Eloqua campaign."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: eloqua_identifier
+      #       data_type: string
+      #       description: "Eloqua identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: product_desc
+      #       data_type: string
+      #       description: "Description of the product."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: confidential_restricted
+      #       data_type: string
+      #       description: "Restricted confidential information."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: academic_unit
+      #       data_type: string
+      #       description: "Academic unit."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: business_unit
+      #       data_type: string
+      #       description: "Business unit."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: category1
+      #       data_type: string
+      #       description: "Category 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: category2
+      #       data_type: string
+      #       description: "Category 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: client_type
+      #       data_type: string
+      #       description: "Type of client."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_12_label
+      #       data_type: string
+      #       description: "Label for custom field 12."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_12_value
+      #       data_type: string
+      #       description: "Value for custom field 12."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_13_label
+      #       data_type: string
+      #       description: "Label for custom field 13."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_13_value
+      #       data_type: string
+      #       description: "Value for custom field 13."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_14_label
+      #       data_type: string
+      #       description: "Label for custom field 14."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_field_14_value
+      #       data_type: string
+      #       description: "Value for custom field 14."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_menu_1_label
+      #       data_type: string
+      #       description: "Label for custom menu 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_menu_1_value
+      #       data_type: string
+      #       description: "Value for custom menu 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_menu_2_label
+      #       data_type: string
+      #       description: "Label for custom menu 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_menu_2_value
+      #       data_type: string
+      #       description: "Value for custom menu 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_menu_3_label
+      #       data_type: string
+      #       description: "Label for custom menu 3."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_menu_3_value
+      #       data_type: string
+      #       description: "Value for custom menu 3."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: customer_number_2_label
+      #       data_type: string
+      #       description: "Label for customer number 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: customer_number_2_value
+      #       data_type: integer
+      #       description: "Value for customer number 2."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: customer_number_3_label
+      #       data_type: string
+      #       description: "Label for customer number 3."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: customer_number_3_value
+      #       data_type: integer
+      #       description: "Value for customer number 3."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: customer_number_4_label
+      #       data_type: string
+      #       description: "Label for customer number 4."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: customer_number_4_value
+      #       data_type: integer
+      #       description: "Value for customer number 4."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_yn_menu1_label
+      #       data_type: string
+      #       description: "Label for custom yes/no menu 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_yn_menu1_value
+      #       data_type: string
+      #       description: "Value for custom yes/no menu 1."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_7_label
+      #       data_type: string
+      #       description: "Label for custom flag 7."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_7_value
+      #       data_type: string
+      #       description: "Value for custom flag 7."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_8_label
+      #       data_type: string
+      #       description: "Label for custom flag 8."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_8_value
+      #       data_type: string
+      #       description: "Value for custom flag 8."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_9_label
+      #       data_type: string
+      #       description: "Label for custom flag 9."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_9_value
+      #       data_type: string
+      #       description: "Value for custom flag 9."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_10_label
+      #       data_type: string
+      #       description: "Label for custom flag 10."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: custom_flag_10_value
+      #       data_type: string
+      #       description: "Value for custom flag 10."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: academic_review_id
+      #       data_type: integer
+      #       description: "ID of the academic review."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: iws_media_name
+      #       data_type: string
+      #       description: "IWS media name."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: audit_ingestion_time
+      #       data_type: datetime2
+      #       description: "Timestamp of the audit ingestion time."
+      #       tests:
+      #         - expect_column_to_exist
+
+      # # - name: stg_studylink_agents
+      #   # columns:
+      #   #   - name: Active
+      #   #     data_type: string
+      #   #   - name: StudylinkAgentCode
+      #   #     data_type: string
+      #   #   - name: AgentName
+      #   #     data_type: string
+      #   #   - name: AgencyID
+      #   #     data_type: string
+      #   #   - name: EXTERNAL_RECRUITER_ID
+      #   #     data_type: string
+      #   #   - name: EXTERNAL_CONTENT_MAN_ID
+      #   #     data_type: string
+      #   #   - name: EXTERNAL_ORG_ID
+      #   #     data_type: string
+      #   #   - name: LegalEntityName
+      #   #     data_type: string
+      #   #   - name: AgentOffice
+      #   #     data_type: string
+      #   #   - name: IsHeadOffice
+      #   #     data_type: string
+      #   #   - name: HeadOfficeUniqueCode
+      #   #     data_type: string
+      #   #   - name: PrincipalAgent
+      #   #     data_type: string
+      #   #   - name: PrincipalAgentFirst
+      #   #     data_type: string
+      #   #   - name: PrincipalAgentLast
+      #   #     data_type: string
+      #   #   - name: PrincipalAgentTitle
+      #   #     data_type: string
+      #   #   - name: JobTitle
+      #   #     data_type: string
+      #   #   - name: AgentEmail
+      #   #     data_type: string
+      #   #   - name: Address1
+      #   #     data_type: string
+      #   #   - name: Address2
+      #   #     data_type: string
+      #   #   - name: AddressCity
+      #   #     data_type: string
+      #   #   - name: AddressState
+      #   #     data_type: string
+      #   #   - name: AddressPostalCode
+      #   #     data_type: string
+      #   #   - name: AddressCountry
+      #   #     data_type: string
+      #   #   - name: AddressCountryCode
+      #   #     data_type: string
+      #   #   - name: PhoneNumber
+      #   #     data_type: string
+      #   #   - name: FaxNumber
+      #   #     data_type: string
+      #   #   - name: MobilePhoneNumber
+      #   #     data_type: string
+      #   #   - name: WebsiteURL
+      #   #     data_type: string
+      #   #   - name: AppointedDate
+      #   #     data_type: date
+      #   #   - name: AgreementStartDate
+      #   #     data_type: date
+      #   #   - name: AgreementExpiryDate
+      #   #     data_type: date
+      #   #   - name: AgreementCommission
+      #   #     data_type: int
+      #   #   - name: AgreementContract
+      #   #     data_type: string
+      #   #   - name: AgreementSummary
+      #   #     data_type: string
+      #   #   - name: Comments
+      #   #     data_type: string
+      #   #   - name: BusinessNumber
+      #   #     data_type: string
+      #   #   - name: AgentGroups
+      #   #     data_type: string
+      #   #   - name: AgentNotes
+      #   #     data_type: string
+      # - name: stg_studylink_application
+      # - name: stg_studylink_agents
+      # - name: stg_studylink_milestones
+      #   columns:
+      #     - name: applicantid
+      #       data_type: string
+      #     - name: applicationid
+      #       data_type: string
+      #     - name: status
+      #       data_type: string
+      #     - name: status_code
+      #       data_type: string
+      #     - name: substatus
+      #       data_type: string
+      #     - name: date_changed
+      #       data_type: datetime2
+      #     - name: pref_num
+      #       data_type: int
+      # - name: stg_studylink_preferences
+      #   columns:
+      #     - name: applicationid
+      #       data_type: string
+      #     - name: preferencenum
+      #       data_type: int
+      #     - name: courseid
+      #       data_type: string
+      #     - name: coursecode
+      #       data_type: string
+      #     - name: coursesubcode
+      #       data_type: string
+      #     - name: coursename
+      #       data_type: string
+      #     - name: coursecricoscode
+      #       data_type: string
+      #     - name: coursecampus
+      #       data_type: string
+      #     - name: coursetype
+      #       data_type: string
+      #     - name: intake_code
+      #       data_type: string
+      #     - name: intake_desc
+      #       data_type: string
+      # - name: stg_curv_plan_study_area
+      #   tags: ["curv_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 8
+      #   columns:
+      #     - name: code
+      #       data_type: varchar
+      #       description: "Code identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: year_applied
+      #       data_type: varchar
+      #       description: "Year applied."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: primary_co_from_term
+      #       data_type: varchar
+      #       description: "Primary CO from term."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: Primary_study_area_key
+      #       data_type: varchar
+      #       description: "Primary study area key."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: Primary_study_area_value
+      #       data_type: varchar
+      #       description: "Primary study area value."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: Secondary_study_area_key
+      #       data_type: varchar
+      #       description: "Secondary study area key."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: Secondary_study_area_value
+      #       data_type: varchar
+      #       description: "Secondary study area value."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: audit_ingestion_time
+      #       data_type: datetime2
+      #       description: "Audit ingestion time."
+      #       tests:
+      #         - expect_column_to_exist
+
+      # - name: stg_curv_program_study_area
+      #   tags: ["curv_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 8
+      #   columns:
+      #     - name: code
+      #       data_type: varchar
+      #       description: "Code identifier."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: year_applied
+      #       data_type: varchar
+      #       description: "Year applied."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: primary_co_from_term
+      #       data_type: varchar
+      #       description: "Primary CO from term."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: primary_study_area_key
+      #       data_type: varchar
+      #       description: "Primary study area key."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: primary_study_area_value
+      #       data_type: varchar
+      #       description: "Primary study area value."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: secondary_study_area_key
+      #       data_type: varchar
+      #       description: "Secondary study area key."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: secondary_study_area_value
+      #       data_type: varchar
+      #       description: "Secondary study area value."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: audit_ingestion_time
+      #       data_type: datetime2
+      #       description: "Audit ingestion time."
+      #       tests:
+      #         - expect_column_to_exist
+
+      # - name: stg_curv_acad_duration
+      #   tags: ["curv_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 9
+      #   columns:
+      #     - name: code
+      #       data_type: varchar
+      #       description: "Code identifier."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: year_applied
+      #       data_type: varchar
+      #       description: "Year applied."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: primary_co_from_term
+      #       data_type: varchar
+      #       description: "Primary CO from term."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: study_load
+      #       data_type: varchar
+      #       description: "Study load."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: bachelor_degree_duration
+      #       data_type: varchar
+      #       description: "Duration of bachelor's degree."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: bachelor_degree_hon_duration
+      #       data_type: varchar
+      #       description: "Duration of bachelor's degree with honors."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: associate_degree_duration
+      #       data_type: varchar
+      #       description: "Duration of associate degree."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: diploma_duration
+      #       data_type: varchar
+      #       description: "Duration of diploma."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: audit_ingestion_time
+      #       data_type: datetime2
+      #       description: "Audit ingestion time."
+      #       tests:
+      #         - expect_column_to_exist
+
+              
+      # - name: stg_curv_curriculum_offering
+      #   tags: ["curv_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 13
+      #   columns:
+      #     - name: code
+      #       data_type: varchar
+      #       description: "Code identifier."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: year_applied
+      #       data_type: varchar
+      #       description: "Year applied."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: primary_co_from_term
+      #       data_type: varchar
+      #       description: "Primary CO from term."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: id
+      #       data_type: varchar
+      #       description: "Identifier."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: curriculum_key
+      #       data_type: varchar
+      #       description: "Curriculum key."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: curriculum_value
+      #       data_type: varchar
+      #       description: "Curriculum value."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: offering_title
+      #       data_type: varchar
+      #       description: "Offering title."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: spec_code
+      #       data_type: varchar
+      #       description: "Specialization code."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: spec_name
+      #       data_type: varchar
+      #       description: "Specialization name."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: spec_fromyear
+      #       data_type: varchar
+      #       description: "Specialization from year."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: spec_fromterm
+      #       data_type: varchar
+      #       description: "Specialization from term."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: value
+      #       data_type: varchar
+      #       description: "Value."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: audit_ingestion_time
+      #       data_type: datetime2
+      #       description: "Audit ingestion time."
+      #       tests:
+      #         - expect_column_to_exist
+
+      # - name: stg_curv_prim_study_loc
+      #   tags: ["curv_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 8
+      #   columns:
+      #     - name: code
+      #       data_type: varchar
+      #       description: "Code identifier."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: year_applied
+      #       data_type: varchar
+      #       description: "Year applied."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: primary_co_from_term
+      #       data_type: varchar
+      #       description: "Primary CO from term."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: location_key
+      #       data_type: varchar
+      #       description: "Location key."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: location_value
+      #       data_type: varchar
+      #       description: "Location value."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: study_mode_key
+      #       data_type: varchar
+      #       description: "Study mode key."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: study_mode_value
+      #       data_type: varchar
+      #       description: "Study mode value."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: audit_ingestion_time
+      #       data_type: datetime2
+      #       description: "Audit ingestion time."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      # - name: stg_curv_program
+      #   tags: ["curv_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 86
+      #   columns:
+      #     - name: publish_instance_id
+      #       data_type: varchar
+      #       description: "Publish instance identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: code
+      #       data_type: varchar
+      #       description: "Code identifier."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: name
+      #       data_type: varchar
+      #       description: "Name."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: type
+      #       data_type: varchar
+      #       description: "Type."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: subtype
+      #       data_type: varchar
+      #       description: "Subtype."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: version_major
+      #       data_type: varchar
+      #       description: "Major version."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: version_minor
+      #       data_type: varchar
+      #       description: "Minor version."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: base_version_major
+      #       data_type: varchar
+      #       description: "Base major version."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: base_version_minor
+      #       data_type: varchar
+      #       description: "Base minor version."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: cms_version
+      #       data_type: varchar
+      #       description: "CMS version."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: workflow_name
+      #       data_type: varchar
+      #       description: "Workflow name."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: state
+      #       data_type: varchar
+      #       description: "State."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: previous_state
+      #       data_type: varchar
+      #       description: "Previous state."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: template_name
+      #       data_type: varchar
+      #       description: "Template name."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: template_version
+      #       data_type: varchar
+      #       description: "Template version."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: org_code
+      #       data_type: varchar
+      #       description: "Organization code."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: org_name
+      #       data_type: varchar
+      #       description: "Organization name."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: year_applied
+      #       data_type: varchar
+      #       description: "Year applied."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: edit_date
+      #       data_type: varchar
+      #       description: "Edit date."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: author_given_name
+      #       data_type: varchar
+      #       description: "Author's given name."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: author_last_name
+      #       data_type: varchar
+      #       description: "Author's last name."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: external_system_identifiers
+      #       data_type: varchar
+      #       description: "External system identifiers."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: co_pdf_src
+      #       data_type: varchar
+      #       description: "CO PDF source."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: primary_co_name
+      #       data_type: varchar
+      #       description: "Primary CO name."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: primary_co_from_year
+      #       data_type: varchar
+      #       description: "Primary CO from year."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: primary_co_from_term
+      #       data_type: varchar
+      #       description: "Primary CO from term."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: full_version
+      #       data_type: varchar
+      #       description: "Full version."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: aqf_level
+      #       data_type: varchar
+      #       description: "AQF level."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: accreditation
+      #       data_type: varchar
+      #       description: "Accreditation."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: additional_criteria
+      #       data_type: varchar
+      #       description: "Additional criteria."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: secondary_study_locations
+      #       data_type: varchar
+      #       description: "Secondary study locations."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: assumed_knowledge
+      #       data_type: varchar
+      #       description: "Assumed knowledge."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: available_to_student_type
+      #       data_type: varchar
+      #       description: "Available to student type."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: cricos_code
+      #       data_type: varchar
+      #       description: "CRICOS code."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: campus
+      #       data_type: varchar
+      #       description: "Campus."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: career_outcomes
+      #       data_type: varchar
+      #       description: "Career outcomes."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: degree_overview
+      #       data_type: varchar
+      #       description: "Degree overview."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: assessment_feedback
+      #       data_type: varchar
+      #       description: "Assessment feedback."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: teaching_arrangements
+      #       data_type: varchar
+      #       description: "Teaching arrangements."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: program_desc
+      #       data_type: varchar
+      #       description: "Program description."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: display_url
+      #       data_type: varchar
+      #       description: "Display URL."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: innovative_features
+      #       data_type: varchar
+      #       description: "Innovative features."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: entry_req_dom
+      #       data_type: varchar
+      #       description: "Entry requirements for domestic students."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: entry_req_int
+      #       data_type: varchar
+      #       description: "Entry requirements for international students."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: field_of_education
+      #       data_type: varchar
+      #       description: "Field of education."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: further_study
+      #       data_type: varchar
+      #       description: "Further study options."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: graduate_dest
+      #       data_type: varchar
+      #       description: "Graduate destinations."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: contemporary_curriculum
+      #       data_type: varchar
+      #       description: "Contemporary curriculum."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: emerging_rsch_opp
+      #       data_type: varchar
+      #       description: "Emerging research opportunities."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: prog_without_spec
+      #       data_type: varchar
+      #       description: "Program without specialization."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: is_it_double_deg
+      #       data_type: varchar
+      #       description: "Is it a double degree?"
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: label
+      #       data_type: varchar
+      #       description: "Label."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: min_eligbility_score
+      #       data_type: varchar
+      #       description: "Minimum eligibility score."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: onshore_offshore
+      #       data_type: varchar
+      #       description: "Onshore or offshore."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: overview
+      #       data_type: varchar
+      #       description: "Overview."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: prog_overview
+      #       data_type: varchar
+      #       description: "Program overview."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: peoplesoft_prog_code
+      #       data_type: varchar
+      #       description: "PeopleSoft program code."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: prerequisites
+      #       data_type: varchar
+      #       description: "Prerequisites."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: prog_aim
+      #       data_type: varchar
+      #       description: "Program aim."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: prog_director
+      #       data_type: varchar
+      #       description: "Program director."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: prog_key_features
+      #       data_type: varchar
+      #       description: "Program key features."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: qual_title
+      #       data_type: varchar
+      #       description: "Qualification title."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: qual_type
+      #       data_type: varchar
+      #       description: "Qualification type."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: eng_requirements
+      #       data_type: varchar
+      #       description: "English requirements."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: related_prog
+      #       data_type: varchar
+      #       description: "Related program."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: rsch_component
+      #       data_type: varchar
+      #       description: "Research component."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: satac_code
+      #       data_type: varchar
+      #       description: "SATAC code."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: search_tags
+      #       data_type: varchar
+      #       description: "Search tags."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: scnd_field_of_ed
+      #       data_type: varchar
+      #       description: "Second field of education."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: short_prog_desc
+      #       data_type: varchar
+      #       description: "Short program description."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: start_dt
+      #       data_type: varchar
+      #       description: "Start date."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: tool_tip_adm
+      #       data_type: varchar
+      #       description: "Tool tip for admission."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: tool_tip_cricos
+      #       data_type: varchar
+      #       description: "Tool tip for CRICOS."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: tool_tip_satac
+      #       data_type: varchar
+      #       description: "Tool tip for SATAC."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: tool_tip_dur
+      #       data_type: varchar
+      #       description: "Tool tip for duration."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: tool_tip_mode
+      #       data_type: varchar
+      #       description: "Tool tip for mode."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: tool_tip_st_dt
+      #       data_type: varchar
+      #       description: "Tool tip for start date."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: what_to_learn
+      #       data_type: varchar
+      #       description: "What to learn."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: why_this_prog
+      #       data_type: varchar
+      #       description: "Why this program."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: prof_accreditation
+      #       data_type: varchar
+      #       description: "Professional accreditation."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: your_campus
+      #       data_type: varchar
+      #       description: "Your campus."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: tool_tip_knowledge
+      #       data_type: varchar
+      #       description: "Tool tip for knowledge."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: tool_tip_prereq
+      #       data_type: varchar
+      #       description: "Tool tip for prerequisites."
+      #       tests:
+      #         - expect_column_to_exist
+      #     - name: audit_ingestion_time
+      #       data_type: datetime2
+      #       description: "Audit ingestion time."
+      #       tests:
+      #         - expect_column_to_exist
+
+
+      # - name: stg_curv_plan
+      #   tags: ["curv_source"]
+      #   tests:
+      #     - dbt_expectations.expect_table_column_count_to_equal:
+      #         value: 64
+      #   columns:
+      #     - name: publish_instance_id
+      #       data_type: varchar
+      #       description: "Publish instance identifier."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: code
+      #       data_type: varchar
+      #       description: "Code identifier."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: name
+      #       data_type: varchar
+      #       description: "Name."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: type
+      #       data_type: varchar
+      #       description: "Type."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: subtype
+      #       data_type: varchar
+      #       description: "Subtype."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: version_major
+      #       data_type: varchar
+      #       description: "Major version."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: version_minor
+      #       data_type: varchar
+      #       description: "Minor version."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: base_version_major
+      #       data_type: varchar
+      #       description: "Base major version."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: base_version_minor
+      #       data_type: varchar
+      #       description: "Base minor version."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: cms_version
+      #       data_type: varchar
+      #       description: "CMS version."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: workflow_name
+      #       data_type: varchar
+      #       description: "Workflow name."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: state
+      #       data_type: varchar
+      #       description: "State."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: previous_state
+      #       data_type: varchar
+      #       description: "Previous state."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: template_name
+      #       data_type: varchar
+      #       description: "Template name."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: template_version
+      #       data_type: varchar
+      #       description: "Template version."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: org_code
+      #       data_type: varchar
+      #       description: "Organization code."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: org_name
+      #       data_type: varchar
+      #       description: "Organization name."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: year_applied
+      #       data_type: varchar
+      #       description: "Year applied."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: edit_date
+      #       data_type: varchar
+      #       description: "Edit date."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: author_given_name
+      #       data_type: varchar
+      #       description: "Author's given name."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: author_last_name
+      #       data_type: varchar
+      #       description: "Author's last name."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: external_system_identifiers
+      #       data_type: varchar
+      #       description: "External system identifiers."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: co_pdf_src
+      #       data_type: varchar
+      #       description: "CO PDF source."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: primary_co_name
+      #       data_type: varchar
+      #       description: "Primary CO name."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: primary_co_from_year
+      #       data_type: varchar
+      #       description: "Primary CO from year."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: primary_co_from_term
+      #       data_type: varchar
+      #       description: "Primary CO from term."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: full_version
+      #       data_type: varchar
+      #       description: "Full version."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: accreditation
+      #       data_type: varchar
+      #       description: "Accreditation."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: additional_criteria
+      #       data_type: varchar
+      #       description: "Additional criteria."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: secondary_study_locations
+      #       data_type: varchar
+      #       description: "Secondary study locations."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: cricos_code
+      #       data_type: varchar
+      #       description: "CRICOS code."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: campus
+      #       data_type: varchar
+      #       description: "Campus."
+      #       tests:
+      #         - expect_column_to_exist
+
+        
+      #     - name: career_outcomes
+      #       data_type: varchar
+      #       description: "Career outcomes."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: degree_overview
+      #       data_type: varchar
+      #       description: "Degree overview."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: display_url
+      #       data_type: varchar
+      #       description: "Display URL."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: field_of_education
+      #       data_type: varchar
+      #       description: "Field of education."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: further_study
+      #       data_type: varchar
+      #       description: "Further study options."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: label
+      #       data_type: varchar
+      #       description: "Label."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: min_eligbility_score
+      #       data_type: varchar
+      #       description: "Minimum eligibility score."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: overview
+      #       data_type: varchar
+      #       description: "Overview."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: peoplesoft_plan_code
+      #       data_type: varchar
+      #       description: "PeopleSoft plan code."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: plan_accr_notes
+      #       data_type: varchar
+      #       description: "Plan accreditation notes."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: prog_director
+      #       data_type: varchar
+      #       description: "Program director."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: prog_key_features
+      #       data_type: varchar
+      #       description: "Program key features."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: related_prog
+      #       data_type: varchar
+      #       description: "Related program."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: satac_code
+      #       data_type: varchar
+      #       description: "SATAC code."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: search_tags
+      #       data_type: varchar
+      #       description: "Search tags."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: short_prog_desc
+      #       data_type: varchar
+      #       description: "Short program description."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: start_dt
+      #       data_type: varchar
+      #       description: "Start date."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: title
+      #       data_type: varchar
+      #       description: "Title."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: tool_tip_adm_transparency
+      #       data_type: varchar
+      #       description: "Tool tip for admission transparency."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: tool_tip_cricos
+      #       data_type: varchar
+      #       description: "Tool tip for CRICOS."
+      #       tests:
+      #         - expect_column_to_exist
+
+      #     - name: tool_tip_satac
+      #       data_type: varchar
+      #       description: "Tool tip for SATAC."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: tool_tip_dur
+      #       data_type: varchar
+      #       description: "Tool tip for duration."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: tool_tip_mode
+      #       data_type: varchar
+      #       description: "Tool tip for mode."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: tool_tip_st_dt
+      #       data_type: varchar
+      #       description: "Tool tip for start date."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: what_to_learn
+      #       data_type: varchar
+      #       description: "What to learn."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: why_this_prog
+      #       data_type: varchar
+      #       description: "Why this program."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: your_campus
+      #       data_type: varchar
+      #       description: "Your campus."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: tool_tip_knowledge
+      #       data_type: varchar
+      #       description: "Tool tip for knowledge."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: tool_tip_prereq
+      #       data_type: varchar
+      #       description: "Tool tip for prerequisites."
+      #       tests:
+      #         - expect_column_to_exist
+              
+      #     - name: audit_ingestion_time
+      #       data_type: datetime2
+      #       description: "Audit ingestion time."
+      #       tests:
+      #         - expect_column_to_exist
