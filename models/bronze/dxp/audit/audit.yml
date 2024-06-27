@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: audit
+    description: "Audit log data capturing various web events."
+    tests:
+      - expect_table_row_count_to_equal_other_table_with_source_dedup:
+          compare_model: source("edp_gtm_dev_lh", "stg_dxp_audit")
+          factor: 1
+
+    meta:
+      this_can_be_anything : "this can be anything"
+    columns:
+      - name: id
+        data_type: varchar
+        description: "Unique identifier for each event."
+        meta:
+          this_can_be_anything : "this can be anything"
+
+      - name: event_timestamp
+        data_type: datetime2
+        description: "Timestamp of when the event occurred."
+
+      - name: event_type
+        data_type: varchar
+        description: "Type of the event (e.g., page view, button click)."
+
+      - name: export_time
+        data_type: bigint
+        description: "The time when data was exported, in Unix epoch format."
+
+      - name: audit_ingestion_time
+        data_type: datetime2
+        description: "Timestamp when the audit data was ingested."
+
+      - name: adf_pipeline_id
+        data_type: varchar
+        description: "Identifier for the Azure Data Factory pipeline processing the data."
+
+      - name: edp_effective_dttm
+        data_type: datetime2
+        description: "Effective date and time of the data record."
+
+      - name: edp_expiry_dttm
+        data_type: datetime2
+        description: "Expiry date and time of the data record."
+
+      - name: edp_last_modified_dttm
+        data_type: datetime2
+        description: "Last modified date and time of the data record."
+
+      - name: row_hash
+        data_type: varbinary
+        description: "Hash of the row data for integrity verification."
+
+      - name: pk_hash
+        data_type: varbinary
+        description: "Hash of the primary key for integrity verification."
+
+      - name: dbt_process_id
+        data_type: varchar
+        description: "Identifier for the dbt process handling the data."
+
+      - name: is_current_flag
+        data_type: varchar
+        description: "Flag indicating if the record is the current version."
+
+      - name: iud_flag
+        data_type: varchar
+        description: "Indicator for Insert, Update, Delete operations."
