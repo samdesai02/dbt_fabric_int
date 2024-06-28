@@ -17,6 +17,10 @@ models:
         meta:
           this_can_be_anything: "this can be anything"
 
+      - name: confirmed
+        data_type: float
+        description: "Unique identifier for each event."
+
       - name: event_timestamp
         data_type: datetime2
         description: "Timestamp of when the event occurred."

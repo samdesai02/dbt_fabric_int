@@ -7,7 +7,12 @@ sources:
     tables:
       - name: raw_covid_data
         columns:
-          - name: id
-            tests:
-              - not_null
-              - unique
+        - name: id
+          data_type: varchar
+          description: "Unique identifier for each event."
+          tests:
+            - not_null
+            - unique
+        - name: confirmed
+          data_type: float
+          description: "Unique identifier for each event."            
